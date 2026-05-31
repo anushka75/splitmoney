@@ -14,20 +14,37 @@ router = APIRouter(prefix="/expenses", tags=["Expenses"])
 
 
 @router.post("")
-def create_expense(expense_data: ExpenseCreate, current_user=Depends(get_current_user), db: Session = Depends(get_db)):
+def create_expense(
+    expense_data: ExpenseCreate,
+    current_user=Depends(get_current_user),
+    db: Session = Depends(get_db),
+):
     return create_expense_controller(db, current_user, expense_data)
 
 
 @router.get("/{expense_id}")
-def get_expense(expense_id: int, current_user=Depends(get_current_user), db: Session = Depends(get_db)):
+def get_expense(
+    expense_id: int,
+    current_user=Depends(get_current_user),
+    db: Session = Depends(get_db),
+):
     return get_expense_controller(db, expense_id, current_user)
 
 
 @router.put("/{expense_id}")
-def update_expense(expense_id: int, expense_data: ExpenseCreate, current_user=Depends(get_current_user), db: Session = Depends(get_db)):
+def update_expense(
+    expense_id: int,
+    expense_data: ExpenseCreate,
+    current_user=Depends(get_current_user),
+    db: Session = Depends(get_db),
+):
     return update_expense_controller(db, expense_id, expense_data, current_user)
 
 
 @router.delete("/{expense_id}")
-def delete_expense(expense_id: int, current_user=Depends(get_current_user), db: Session = Depends(get_db)):
+def delete_expense(
+    expense_id: int,
+    current_user=Depends(get_current_user),
+    db: Session = Depends(get_db),
+):
     return delete_expense_controller(db, expense_id, current_user)

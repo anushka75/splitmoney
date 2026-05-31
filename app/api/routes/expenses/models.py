@@ -17,4 +17,3 @@ class ExpenseCreate(BaseModel):
     paid_by: int
     split_type: str = "equal"
     participants: List[ExpenseParticipant]
-

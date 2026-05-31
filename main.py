@@ -5,7 +5,7 @@ from app.api.routes.users.routes import router as user_router
 from app.api.routes.groups.routes import router as group_router
 from app.api.routes.expenses import router as expense_router
 from app.api.routes.group_members import router as group_members_router
-from app.services.db_service import Base, get_engine
+from app.services.db.service import Base, get_engine
 
 bootstrap()
 

@@ -12,7 +12,9 @@ router = APIRouter(prefix="/users", tags=["Users"])
 
 
 @router.get("/{user_id}")
-def get_user(user_id: int, current_user=Depends(get_current_user), db: Session = Depends(get_db)):
+def get_user(
+    user_id: int, current_user=Depends(get_current_user), db: Session = Depends(get_db)
+):
     return get_user_controller(db, user_id)
 
 
@@ -22,5 +24,7 @@ def list_users(current_user=Depends(get_current_user), db: Session = Depends(get
 
 
 @router.get("/search")
-def search_users(email: str, current_user=Depends(get_current_user), db: Session = Depends(get_db)):
+def search_users(
+    email: str, current_user=Depends(get_current_user), db: Session = Depends(get_db)
+):
     return search_users_controller(db, email)

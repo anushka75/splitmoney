@@ -4,7 +4,15 @@ from app.services.db.postgres.expenses import Expenses
 
 
 def get_expense(db: Session, expense_id: int, current_user):
-    expense = db.query(Expenses).filter(Expenses.id == expense_id, Expenses.created_by == current_user.id, Expenses.is_deleted == 0).first()
+    expense = (
+        db.query(Expenses)
+        .filter(
+            Expenses.id == expense_id,
+            Expenses.created_by == current_user.id,
+            Expenses.is_deleted == 0,
+        )
+        .first()
+    )
     if not expense:
-        raise HTTPException(status_code=404, detail='Expense not found')
+        raise HTTPException(status_code=404, detail="Expense not found")
     return expense

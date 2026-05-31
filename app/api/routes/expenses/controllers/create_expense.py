@@ -5,7 +5,9 @@ from app.services.db.postgres.expense_splits import ExpenseSplits
 from sqlalchemy.exc import SQLAlchemyError
 
 
-def create_expense(db: Session, current_user, group_id: int, expense_data: ExpenseCreate):
+def create_expense(
+    db: Session, current_user, group_id: int, expense_data: ExpenseCreate
+):
     try:
         expense = Expenses(
             group_id=group_id,

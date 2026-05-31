@@ -1,6 +1,7 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from app.bootstrap.bootstrap import bootstrap
+from app.config import get_config
 from app.api.routes.auth import router as auth_router
 from app.api.routes.users.routes import router as user_router
 from app.api.routes.groups.routes import router as group_router
@@ -13,9 +14,13 @@ bootstrap()
 
 app = FastAPI()
 
+cors_origins = [
+    origin.strip() for origin in get_config().get("cors_origins") if origin.strip()
+]
+
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["http://localhost:5173"],
+    allow_origins=cors_origins,
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],

@@ -5,7 +5,7 @@ from app.api.dependencies.auth import get_current_user
 from app.api.routes.group_members.controllers import (
     get_group_members as get_group_members_controller,
     add_group_member as add_group_member_controller,
-    delete_group_member as delete_group_member_controller,
+    delete_group_member as remove_group_member_controller,
 )
 from app.api.routes.group_members.models import GroupMemberCreate
 
@@ -30,10 +30,10 @@ def add_group_members(
 
 
 @router.delete("/{user_id}")
-def delete_group_member(
+def remove_group_member(
     group_id: int,
     user_id: int,
     current_user=Depends(get_current_user),
     db: Session = Depends(get_db),
 ):
-    return delete_group_member_controller(db, group_id, user_id, current_user)
+    return remove_group_member_controller(db, group_id, user_id, current_user)

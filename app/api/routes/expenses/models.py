@@ -10,7 +10,6 @@ class ExpenseParticipant(BaseModel):
 
 
 class ExpenseCreate(BaseModel):
-    group_id: int
     amount: float
     title: str
     description: Optional[str] = None

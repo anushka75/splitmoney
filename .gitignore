@@ -5,9 +5,7 @@ __pycache__/
 *.so
 
 # Virtual Environment
-venv/
-env/
-.venv/
+splitmoney
 
 # Environment variables
 .env
@@ -60,7 +58,5 @@ temp/
 secrets.json
 credentials.json
 
-# virtual environment
-splitmoney
-
+#migrations
 migrations

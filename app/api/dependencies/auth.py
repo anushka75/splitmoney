@@ -3,7 +3,7 @@ from fastapi.security import OAuth2PasswordBearer
 from sqlalchemy.orm import Session
 from app.core.database import get_db
 from app.core.security import decode_access_token
-from app.models.user import User
+from app.db.user import User
 
 oauth2_scheme = OAuth2PasswordBearer(tokenUrl="/auth/login")
 
@@ -16,7 +16,7 @@ def get_current_user(
         raise HTTPException(status_code=401, detail="Invalid token")
 
     user_id = payload.get("sub")
-    user = db.query(User).filter(User.id == int(user_id), User.is_deleted == 0).first()
+    user = db.query(User).filter(User.id == int(user_id), User.deleted == 0).first()
 
     if not user:
         raise HTTPException(status_code=401, detail="User not found")

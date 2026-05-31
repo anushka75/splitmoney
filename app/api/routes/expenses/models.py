@@ -1,0 +1,20 @@
+from typing import List, Optional
+from pydantic import BaseModel
+from app.db.expenses import Expenses
+from app.db.expense_splits import ExpenseSplits
+
+
+class ExpenseParticipant(BaseModel):
+    user_id: int
+    ratio: Optional[float] = None
+
+
+class ExpenseCreate(BaseModel):
+    group_id: int
+    amount: float
+    title: str
+    description: Optional[str] = None
+    paid_by: int
+    split_type: str = "equal"
+    participants: List[ExpenseParticipant]
+

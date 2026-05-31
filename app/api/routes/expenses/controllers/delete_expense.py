@@ -1,6 +1,6 @@
 from fastapi import HTTPException
 from sqlalchemy.orm import Session
-from app.db.expenses import Expenses
+from app.services.db.postgres.expenses import Expenses
 
 
 def delete_expense(db: Session, expense_id: int, current_user):

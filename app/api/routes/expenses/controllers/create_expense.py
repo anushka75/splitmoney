@@ -1,7 +1,7 @@
 from sqlalchemy.orm import Session
 from app.api.routes.expenses.models import ExpenseCreate
-from app.db.expenses import Expenses
-from app.db.expense_splits import ExpenseSplits
+from app.services.db.postgres.expenses import Expenses
+from app.services.db.postgres.expense_splits import ExpenseSplits
 
 
 def create_expense(db: Session, current_user, expense_data: ExpenseCreate):

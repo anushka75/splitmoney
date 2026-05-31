@@ -1,4 +1,4 @@
-from app.db.groups import Groups
+from app.services.db.postgres.groups import Groups
 from typing import Optional
 from pydantic import BaseModel
 

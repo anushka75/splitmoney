@@ -1,7 +1,7 @@
 from typing import List, Optional
 from pydantic import BaseModel
-from app.db.expenses import Expenses
-from app.db.expense_splits import ExpenseSplits
+from app.services.db.postgres.expenses import Expenses
+from app.services.db.postgres.expense_splits import ExpenseSplits
 
 
 class ExpenseParticipant(BaseModel):

@@ -1,5 +1,5 @@
 from sqlalchemy.orm import Session
-from app.db.user import User
+from app.services.db.postgres.user import User
 
 
 def get_users(db: Session):

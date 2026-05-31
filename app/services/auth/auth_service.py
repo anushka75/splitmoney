@@ -1,7 +1,7 @@
 from fastapi import HTTPException
 from sqlalchemy.orm import Session
-from app.db.user import User
-from app.core.security import hash_password, verify_password, create_access_token
+from app.services.db.postgres.user import User
+from app.services.auth.utils import hash_password, verify_password, create_access_token
 
 
 class AuthService:

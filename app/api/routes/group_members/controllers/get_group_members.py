@@ -1,5 +1,5 @@
 from sqlalchemy.orm import Session
-from app.db.group_members import GroupMembers
+from app.services.db.postgres.group_members import GroupMembers
 
 
 def get_group_members(db: Session, group_id: int, current_user):

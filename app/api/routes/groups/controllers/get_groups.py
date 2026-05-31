@@ -1,5 +1,5 @@
 from sqlalchemy.orm import Session
-from app.db.groups import Groups
+from app.services.db.postgres.groups import Groups
 
 
 def get_groups(db: Session, current_user):

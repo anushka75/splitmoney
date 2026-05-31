@@ -1,7 +1,7 @@
 from fastapi import APIRouter, Depends
 from sqlalchemy.orm import Session
 from app.api.dependencies.auth import get_current_user
-from app.core.database import get_db
+from app.services.db.service import get_db
 from app.api.routes.groups.models import GroupCreate
 from app.api.routes.groups.controllers import (
     create_group as create_group_controller,

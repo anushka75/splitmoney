@@ -1,4 +1,4 @@
-from app.db.user import User
+from app.services.db.postgres.user import User
 from typing import Optional
 from pydantic import BaseModel
 

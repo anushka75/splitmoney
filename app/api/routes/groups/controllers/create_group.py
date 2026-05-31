@@ -1,6 +1,6 @@
 from sqlalchemy.orm import Session
 from app.api.routes.groups.models import GroupCreate
-from app.db.groups import Groups
+from app.services.db.postgres.groups import Groups
 
 
 def create_group(db: Session, current_user, group_data: GroupCreate):

@@ -1,6 +1,6 @@
 from fastapi import HTTPException
 from sqlalchemy.orm import Session
-from app.db.groups import Groups
+from app.services.db.postgres.groups import Groups
 
 
 def delete_group(db: Session, group_id: int, current_user):

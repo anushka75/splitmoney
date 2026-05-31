@@ -1,7 +1,7 @@
 from fastapi import HTTPException
 from sqlalchemy.orm import Session
 from app.api.routes.expenses.models import ExpenseCreate
-from app.db.expenses import Expenses
+from app.services.db.postgres.expenses import Expenses
 
 
 def update_expense(db: Session, expense_id: int, expense_data: ExpenseCreate, current_user):

@@ -1,0 +1,6 @@
+{
+  "database_url": "postgresql://postgres:splitsmoney@localhost:5432/splitsmoney",
+  "jwt_secret_key": "supersecretkey",
+  "jwt_algorithm": "HS256",
+  "access_token_expire_minutes": 60
+}

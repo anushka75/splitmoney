@@ -1,7 +1,7 @@
 from fastapi import HTTPException
 from sqlalchemy.orm import Session
 from app.api.routes.groups.models import GroupCreate
-from app.db.groups import Groups
+from app.services.db.postgres.groups import Groups
 
 
 def update_group(db: Session, group_id: int, group_data: GroupCreate, current_user):

@@ -1,6 +1,6 @@
 from fastapi import APIRouter, Depends
 from sqlalchemy.orm import Session
-from app.core.database import get_db
+from app.services.db.service import get_db
 from app.api.routes.expenses.controllers import (
     create_expense as create_expense_controller,
     get_expense as get_expense_controller,

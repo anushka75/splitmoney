@@ -1,0 +1,18 @@
+version: "3.9"
+
+services:
+  postgres:
+    image: postgres:16
+    container_name: splitsmoney_postgres
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: splitsmoney
+      POSTGRES_DB: splitsmoney
+    ports:
+      - "5432:5432"
+
+  redis:
+    image: redis:7
+    ports:
+      - "6379:6379"
+    

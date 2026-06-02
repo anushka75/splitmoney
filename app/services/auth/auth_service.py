@@ -1,6 +1,8 @@
 from fastapi import HTTPException
 from sqlalchemy.orm import Session
 from app.services.db.postgres.user import User
+from app.services.db.postgres.group_invitations import GroupInvitation
+from app.services.db.postgres.group_members import GroupMembers
 from app.services.auth.utils import hash_password, verify_password, create_access_token
 
 
@@ -21,6 +23,63 @@ class AuthService:
 
         try:
             db.add(user)
+
+            db.flush()
+
+            if getattr(payload, "invite_token", None):
+                token_invite = (
+                    db.query(GroupInvitation)
+                    .filter(
+                        GroupInvitation.token == payload.invite_token,
+                        GroupInvitation.email == user.email,
+                        GroupInvitation.status == "pending",
+                    )
+                    .first()
+                )
+                if not token_invite:
+                    raise HTTPException(
+                        status_code=400, detail="Invalid invitation token"
+                    )
+
+                if not (
+                    db.query(GroupMembers)
+                    .filter(
+                        GroupMembers.group_id == token_invite.group_id,
+                        GroupMembers.user_id == user.id,
+                        GroupMembers.deleted == 0,
+                    )
+                    .first()
+                ):
+                    db.add(
+                        GroupMembers(group_id=token_invite.group_id, user_id=user.id)
+                    )
+
+                token_invite.status = "accepted"
+
+            pending_invites = (
+                db.query(GroupInvitation)
+                .filter(
+                    GroupInvitation.email == user.email,
+                    GroupInvitation.status == "pending",
+                )
+                .all()
+            )
+
+            for invite in pending_invites:
+                existing_membership = (
+                    db.query(GroupMembers)
+                    .filter(
+                        GroupMembers.group_id == invite.group_id,
+                        GroupMembers.user_id == user.id,
+                        GroupMembers.deleted == 0,
+                    )
+                    .first()
+                )
+
+                if not existing_membership:
+                    db.add(GroupMembers(group_id=invite.group_id, user_id=user.id))
+                invite.status = "accepted"
+
             db.commit()
             db.refresh(user)
         except Exception:

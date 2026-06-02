@@ -8,6 +8,7 @@ class SignupRequest(BaseModel):
     last_name: Optional[str] = None
     email: str
     password: str
+    invite_token: Optional[str] = None
 
 
 class LoginRequest(BaseModel):

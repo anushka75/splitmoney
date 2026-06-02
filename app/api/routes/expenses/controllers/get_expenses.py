@@ -11,6 +11,7 @@ def get_expenses(db: Session, group_id: int, current_user):
             Expenses.created_by == current_user.id,
             Expenses.is_deleted == 0,
         )
+        .order_by(Expenses.created_at.desc())
         .all()
     )
     return expenses

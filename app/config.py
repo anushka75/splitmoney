@@ -28,6 +28,12 @@ def load_config() -> dict[str, Any]:
         config = json.load(config_file)
 
     dotenv_values = _load_dotenv()
+
+    config.update(dotenv_values)
+
+    for key, value in dotenv_values.items():
+        os.environ.setdefault(key, value)
+
     database_url = os.getenv("DATABASE_URL") or dotenv_values.get("DATABASE_URL")
     if database_url:
         config["database_url"] = database_url
